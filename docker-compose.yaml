@@ -1,0 +1,13 @@
+version: "3"
+services:
+  web:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    entrypoint: ./node_modules/.bin/nodemon --exec 'npm start'
+    volumes:
+        - .:/usr/src/app
+    ports:
+        - 8000:8000
+    env_file: 
+        - .env

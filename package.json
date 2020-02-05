@@ -1,0 +1,20 @@
+{
+  "name": "ad-email-service",
+  "version": "1.0.0",
+  "description": "An email service provider that forwards email through mailgun and sendgrid",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^18.1.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
