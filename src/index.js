@@ -1,8 +1,16 @@
 const server = require('./server');
+const Plugins = require('./plugins');
+const Routes = require('./routes');
 
 const init = async (shouldStart) => {
     await server.initialize();
     console.log('Server initialized');
+
+    // register all plugins
+    await server.register(Plugins);
+
+    // register all routes
+    server.route(Routes);
 
     if (shouldStart) {
         await server.start();

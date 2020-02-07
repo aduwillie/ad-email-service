@@ -4,16 +4,27 @@
   "description": "An email service provider that forwards email through mailgun and sendgrid",
   "main": "src/index.js",
   "scripts": {
+    "lint": "eslint src/**/*",
     "test": "jest",
+    "start:dev": "./node_modules/.bin/nodemon src/index.js --watch src",
     "start": "node src/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@hapi/hapi": "^18.1.0"
+    "@hapi/hapi": "^18.1.0",
+    "request-promise": "^4.2.5"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.1",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2"
   }

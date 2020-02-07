@@ -4,7 +4,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    entrypoint: ./node_modules/.bin/nodemon --exec 'npm start'
+    entrypoint: npm run start:dev
     volumes:
         - .:/usr/src/app
     ports:
