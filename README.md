@@ -46,3 +46,89 @@ To view logs with docker, use `docker-compose logs -f web`. For now only console
 
 To run the tests, use `npm test`.
 
+## Playground
+
+A sanbox version of the service in action is hosted at http://ad-email.herokuapp.com/. To play with the service, the following samples can be useful.
+
+*NB: Don't forget to replace the <from_email_address> and <to_email_address> and any other relevant detail as you wish*
+
+### Using CURL
+
+```Curl
+curl -X POST \
+    http://ad-email.herokuapp.com/v1/email \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -d '{
+        "message": "A test message",
+        "subject": "Test Subject",
+        "from": "<from_email_address>",
+        "to": [ "to_email_address" ]
+}'
+```
+
+### Using JavaScript XHR
+
+```Javascript
+var data = JSON.stringify({
+  "message": "A test message",
+  "subject": "A test subject",
+  "from": "<from_email_address>",
+  "to": [
+    "<to_email_address>"
+  ]
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "http://ad-email.herokuapp.com/v1/email");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("postman-token", "f9107c33-79f7-7c58-a5bc-2877cc043795");
+
+xhr.send(data);
+```
+
+### Using GO
+
+```Go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "http://ad-email.herokuapp.com/v1/email"
+
+	payload := strings.NewReader("{\n\t\"message\": \"A test message\",\n\t\"subject\": \"Heroku\",\n\t\"from\": \"<from_email_address>\",\n\t\"to\": [ \"<to_email_address>\" ]\n}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("content-type", "application/json")
+	req.Header.Add("cache-control", "no-cache")
+	req.Header.Add("postman-token", "dc1a0d33-3c89-5df5-9583-c2a622c4144d")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+
