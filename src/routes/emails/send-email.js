@@ -26,6 +26,7 @@ module.exports = {
                 msg = response;
             } else{
                 // Falling back to elastic email
+                console.error(msg);
                 msg = await ElasticEmail.send(request.payload);
             }
             
@@ -38,7 +39,9 @@ module.exports = {
                     throw Boom.internal(msg);
                 }
             }
-            return msg;
+
+            console.log(msg);
+            return 'Ok';
         },
     },
 };
