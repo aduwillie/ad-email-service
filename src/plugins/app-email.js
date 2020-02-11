@@ -7,13 +7,13 @@ const Plugin = {
     register: async (server) => {
 
         server.app.Mailgun = new MailGun(
-            process.env.MAILGUN_API_KEY,
-            process.env.MAILGUN_DOMAIN,
+            process.env.MAILGUN_API_KEY || 'fake',
+            process.env.MAILGUN_DOMAIN || 'fake',
         );
 
         server.app.ElasticEmail = new ElasticEmail(
-            process.env.ELASTIC_EMAIL_ACCOUNT_EMAIL,
-            process.env.ELASTIC_EMAIL_API_KEY,
+            process.env.ELASTIC_EMAIL_ACCOUNT_EMAIL || 'fake@email.com',
+            process.env.ELASTIC_EMAIL_API_KEY || 'fake',
         );
 
     },

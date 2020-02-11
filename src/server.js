@@ -1,6 +1,9 @@
 const Hapi = require('@hapi/hapi');
 const Boom = require('@hapi/boom');
 
+const Plugins = require('./plugins');
+const Routes = require('./routes');
+
 const server = Hapi.Server({
     port: process.env.PORT,
     host: '0.0.0.0',
@@ -18,4 +21,24 @@ const server = Hapi.Server({
     },
 });
 
-module.exports = server;
+const init = async (shouldStart) => {
+    await server.initialize();
+    console.log('Server initialized');
+
+    // register all plugins
+    await server.register(Plugins);
+
+    // register all routes
+    server.route(Routes);
+
+    if (shouldStart) {
+        await server.start();
+        console.log(`Server started at: ${server.info.uri}`);
+    }
+
+    return server;
+};
+
+module.exports = {
+    init,
+};
