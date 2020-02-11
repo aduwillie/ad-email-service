@@ -50,7 +50,7 @@ To run the tests, use `npm test`.
 
 A sanbox version of the service in action is hosted at http://ad-email.herokuapp.com/. To play with the service, the following samples can be useful.
 
-*NB: Don't forget to replace the <from_email_address> and <to_email_address> and any other relevant detail as you wish*
+*NB: Don't forget to replace the <from_email_address> and <to_email_address> and any other relevant detail as you wish. Also email might end up in SPAM folder.*
 
 ### Using CURL
 
