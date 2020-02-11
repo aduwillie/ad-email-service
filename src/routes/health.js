@@ -1,6 +1,6 @@
 module.exports = {
     method: 'GET',
-    path: '/helath',
+    path: '/health',
     options: {
         handler: () => {
             return 'Healthy!';
