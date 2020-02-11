@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const Boom = require('@hapi/boom');
 
 const server = Hapi.Server({
     port: process.env.PORT,
