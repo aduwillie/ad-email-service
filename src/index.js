@@ -21,7 +21,7 @@ const init = async (shouldStart) => {
 };
 
 // We could plumb in a better error reporting
-process.on('uncaughtException', (err) => console.err);
-process.on('unhandledRejection', (err) => console.err);
+process.on('uncaughtException', console.err);
+process.on('unhandledRejection', console.err);
 
 init(true);

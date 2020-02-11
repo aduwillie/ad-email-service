@@ -55,6 +55,10 @@ An approach would be to queue all user requests. These queues would have a uniqu
 
 The current design is implemented in JavaScript. By leveraging TypeScript, we position ourselves to scale the codebase and improve on the quality of the codebase itself.
 
-### Testing
+#### Testing
 
 Not much tests have been added to this repo due to time contraints. However, implementing a full suite of unit and integration tests improves on the robustness of this repo.
+
+#### Logging
+
+Logging in general should be centralized. As of this implementation, logging goes through the stdout via console. This is not useful as not much monitoring can be gleaned. It would be preferable to use the `server.log` and `request.log` features of Hapi.js to centralize logging.
